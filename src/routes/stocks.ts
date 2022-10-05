@@ -6,10 +6,12 @@ import {
   insertStock,
   lowerQuantity,
   updateStock,
+  testVercel,
 } from "../controllers/stocks";
 
 const router = express.Router();
 
+router.get("/testVercel", testVercel);
 router.get("/getStocks", getStocks);
 router.post("/insertStock", insertStock);
 router.put("/updateStock", updateStock);

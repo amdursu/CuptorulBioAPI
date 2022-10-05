@@ -123,3 +123,7 @@ export const lowerQuantity = async (
     res.status(500).send({ error });
   }
 };
+
+export const testVercel = (req: Request, res: Response, next: NextFunction) => {
+  res.send({ message: "Test Vercel" });
+};
