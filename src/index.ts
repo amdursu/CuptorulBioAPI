@@ -16,6 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // define a route handler for the default home page
 app.use("/api", router);
+app.get("/testVercel", (req, res, next) => {
+  res.send({ message: "Vercel deploy works !!!" });
+});
 
 // start the Express server
 app.listen(PORT, () => {
