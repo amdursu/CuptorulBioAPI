@@ -8,8 +8,8 @@ import router from "./routes/stocks";
 
 const PORT = process.env.PORT || config.port;
 
-// const db = mysql.createConnection(config.db);
-// export const query = promisify(db.query).bind(db);
+const db = mysql.createConnection(config.db);
+export const query = promisify(db.query).bind(db);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

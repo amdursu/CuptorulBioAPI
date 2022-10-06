@@ -82,6 +82,7 @@ typings/
 .nuxt
 dist
 api
+dumps
 
 # Gatsby files
 .cache/
