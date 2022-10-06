@@ -1,6 +1,7 @@
 import express from "express";
 import { promisify } from "util";
 import mysql from "mysql2";
+import * as cors from "cors";
 
 const app = express();
 import config from "../config";
@@ -13,6 +14,7 @@ export const query = promisify(db.query).bind(db);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors.default({ origin: "*" }));
 
 // define a route handler for the default home page
 app.use("/api", router);
