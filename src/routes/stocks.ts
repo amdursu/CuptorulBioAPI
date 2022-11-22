@@ -1,19 +1,19 @@
 import express from "express";
 import {
-  deleteStock,
+  deleteProduct,
   getStocks,
   higherQuantity,
-  insertStock,
+  insertProduct,
   lowerQuantity,
-  updateStock,
+  updateProduct,
 } from "../controllers/stocks";
 
 const router = express.Router();
 
 router.get("/getStocks", getStocks);
-router.post("/insertStock", insertStock);
-router.put("/updateStock", updateStock);
-router.delete("/deleteStock", deleteStock);
+router.post("/insertProduct", insertProduct);
+router.put("/updateProduct", updateProduct);
+router.delete("/deleteProduct", deleteProduct);
 router.patch("/higherQuantity", higherQuantity);
 router.patch("/lowerQuantity", lowerQuantity);
 

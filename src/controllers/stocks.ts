@@ -23,54 +23,57 @@ export const getStocks = async (
   }
 };
 
-export const insertStock = async (
+export const insertProduct = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { stock } = req.body;
+  const product = req.body;
   try {
     const insertQuery = `CALL insertStock(?, ?, ?, ?)`;
-    await query({
+    const response = await query({
       sql: insertQuery,
       values: [
-        stock.productName,
-        stock.quantity,
-        stock.weight,
-        stock.measureUnit,
+        product.productName,
+        product.productQuantity,
+        product.productWeight,
+        product.measureUnit,
       ],
     });
-    res.status(200).send();
+    console.log(response[0][0].productID);
+
+    res.status(200).send({ status: 1, productID: response[0][0].productID });
   } catch (error) {
     res.status(500).send({ error });
   }
 };
 
-export const updateStock = async (
+export const updateProduct = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { stock } = req.body;
+  const product = req.body;
+
   try {
     const updateQuery = `CALL updateStock(?, ?, ?, ?, ?)`;
     await query({
       sql: updateQuery,
       values: [
-        stock.productID,
-        stock.productName,
-        stock.quantity,
-        stock.weight,
-        stock.measureUnit,
+        product.productID,
+        product.productName,
+        product.productQuantity,
+        product.productWeight,
+        product.measureUnit,
       ],
     });
-    res.status(200).send();
+    res.status(200).send({ status: 1 });
   } catch (error) {
     res.status(500).send({ error });
   }
 };
 
-export const deleteStock = async (
+export const deleteProduct = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -82,7 +85,7 @@ export const deleteStock = async (
       sql: deleteQuery,
       values: [productID],
     });
-    res.status(200).send();
+    res.status(200).send({ status: 1 });
   } catch (error) {
     res.status(500).send({ error });
   }
@@ -93,14 +96,15 @@ export const higherQuantity = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { productID, quantity } = req.query;
+  const { productID, quantity, price } = req.query;
   try {
-    const updateQuery = `CALL higherQuantity(?, ?)`;
+    const updateQuery = `CALL higherQuantity(?, ?, ?)`;
     await query({
       sql: updateQuery,
-      values: [productID, quantity],
+      values: [productID, quantity, price],
     });
-    res.status(200).send();
+
+    res.status(200).send({ status: 1 });
   } catch (error) {
     res.status(500).send({ error });
   }
@@ -118,7 +122,7 @@ export const lowerQuantity = async (
       sql: updateQuery,
       values: [productID, quantity],
     });
-    res.status(200).send();
+    res.status(200).send({ status: 1 });
   } catch (error) {
     res.status(500).send({ error });
   }
