@@ -7,7 +7,7 @@ const config = {
     // database: "cuptorulBio",
     host: "sql.freedb.tech",
     user: "freedb_cuptorulBio",
-    password: "5zK@U!Vt%SzztH5",
+    password: "5Rqw?u!mD&Cq3gc",
     database: "freedb_cuptorulBio",
   },
 };
