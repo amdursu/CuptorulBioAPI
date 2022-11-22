@@ -2,15 +2,18 @@ import express from "express";
 import { promisify } from "util";
 import mysql from "mysql2";
 import * as cors from "cors";
-
-const app = express();
 import config from "../config";
 import router from "./routes/stocks";
 
+const app = express();
+
 const PORT = process.env.PORT || config.port;
 
-const db = mysql.createConnection(config.db);
-export const query = promisify(db.query).bind(db);
+// const db = mysql.createConnection(config.db);
+// export const query = promisify(db.query).bind(db);
+
+const pool = mysql.createPool(config.db);
+export const query = promisify(pool.query).bind(pool);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
